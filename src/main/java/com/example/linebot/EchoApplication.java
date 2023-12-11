@@ -50,4 +50,32 @@ public class EchoApplication {
     public void handleDefaultMessageEvent(Event event) {
         System.out.println("event: " + event);
     }
+
+
+    @EventMapping
+    public void handleTextMessageTestEvent(MessageEvent event) {
+
+        if (event.message() instanceof TextMessageContent) {
+            TextMessageContent message = (TextMessageContent) event.message();
+            String messageText = message.text();
+
+            // 檢查訊息是否包含 "a"
+            if (messageText.contains("a")) {
+                messageText = "來AAAAAA";
+            } else {
+                messageText = "回應測試";
+            }
+
+            // 創建一個新的文字訊息
+            TextMessage textMessage = new TextMessage(messageText);
+
+            // 創建一個新的回傳訊息請求
+            ReplyMessageRequest replyMessageRequest = new ReplyMessageRequest(
+                    event.replyToken(),
+                    List.of(textMessage),
+                    false);
+
+            messagingApiClient.replyMessage(replyMessageRequest);
+        }
+    }
 }
