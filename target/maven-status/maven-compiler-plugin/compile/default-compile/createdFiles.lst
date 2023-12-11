@@ -1,5 +1,5 @@
+com\example\linebot\RobotController.class
 com\example\linebot\dto\ChatResponse$Choice.class
-com\example\linebot\dto\ChatRequest.class
 com\example\linebot\LineBotApplication.class
 com\example\linebot\dto\Message.class
 com\example\linebot\config\OpenAIRestTemplateConfig.class

@@ -11,15 +11,18 @@ import com.linecorp.bot.spring.boot.handler.annotation.LineMessageHandler;
 import com.linecorp.bot.webhook.model.Event;
 import com.linecorp.bot.webhook.model.MessageEvent;
 import com.linecorp.bot.webhook.model.TextMessageContent;
+
+import okhttp3.OkHttpClient;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
+
+import org.springframework.http.client.OkHttp3ClientHttpRequestFactory;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @LineMessageHandler
 public class OrderController {
@@ -56,15 +59,18 @@ public class OrderController {
             TextMessageContent message = (TextMessageContent) event.message();
             String messageText = message.text();
 
+
+            OkHttpClient client = new OkHttpClient.Builder()
+                    .readTimeout(30, TimeUnit.SECONDS)
+                    .connectTimeout(30, TimeUnit.SECONDS)
+                    .build();
+
+            OkHttp3ClientHttpRequestFactory requestFactory = new OkHttp3ClientHttpRequestFactory(client);
+
+
             // 創建一個新的 RestTemplate 物件
-            RestTemplate restTemplate = new RestTemplate();
+            RestTemplate restTemplate = new RestTemplate(requestFactory);
 
-// Set the read timeout to 5000 milliseconds (30 seconds)
-            restTemplate.setRequestFactory(new SimpleClientHttpRequestFactory());
-            ((SimpleClientHttpRequestFactory) restTemplate.getRequestFactory()).setReadTimeout(30000);
-
-// Set the connect timeout to 5000 milliseconds (5 seconds)
-            ((SimpleClientHttpRequestFactory) restTemplate.getRequestFactory()).setConnectTimeout(30000);
 
             // 呼叫 API 並獲取回應
             String url = "http://140.130.33.150:8081/chat?prompt=" + messageText;
