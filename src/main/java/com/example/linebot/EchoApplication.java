@@ -58,16 +58,16 @@ public class EchoApplication {
         if (event.message() instanceof TextMessageContent) {
             TextMessageContent message = (TextMessageContent) event.message();
             String messageText = message.text();
-
+            String ReMessageText = "ok";
             // 檢查訊息是否包含 "a"
             if (messageText.contains("a")) {
-                messageText = "來AAAAAA";
+                ReMessageText = "來AAAAAA";
             } else {
-                messageText = "回應測試";
+                ReMessageText= "回應測試";
             }
 
             // 創建一個新的文字訊息
-            TextMessage textMessage = new TextMessage(messageText);
+            TextMessage textMessage = new TextMessage( ReMessageText);
 
             // 創建一個新的回傳訊息請求
             ReplyMessageRequest replyMessageRequest = new ReplyMessageRequest(
