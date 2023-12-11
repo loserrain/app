@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
@@ -57,6 +58,13 @@ public class OrderController {
 
             // 創建一個新的 RestTemplate 物件
             RestTemplate restTemplate = new RestTemplate();
+
+// Set the read timeout to 5000 milliseconds (30 seconds)
+            restTemplate.setRequestFactory(new SimpleClientHttpRequestFactory());
+            ((SimpleClientHttpRequestFactory) restTemplate.getRequestFactory()).setReadTimeout(30000);
+
+// Set the connect timeout to 5000 milliseconds (5 seconds)
+            ((SimpleClientHttpRequestFactory) restTemplate.getRequestFactory()).setConnectTimeout(30000);
 
             // 呼叫 API 並獲取回應
             String url = "http://140.130.33.150:8081/chat?prompt=" + messageText;
