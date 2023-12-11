@@ -61,8 +61,8 @@ public class OrderController {
 
 
             OkHttpClient client = new OkHttpClient.Builder()
-                    .readTimeout(30, TimeUnit.SECONDS)
-                    .connectTimeout(30, TimeUnit.SECONDS)
+                    .readTimeout(300, TimeUnit.SECONDS)
+                    .connectTimeout(300, TimeUnit.SECONDS)
                     .build();
 
             OkHttp3ClientHttpRequestFactory requestFactory = new OkHttp3ClientHttpRequestFactory(client);
