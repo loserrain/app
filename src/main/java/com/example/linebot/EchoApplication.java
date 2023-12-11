@@ -46,36 +46,36 @@ public class EchoApplication {
 //        }
 //    }
 
-    @EventMapping
-    public void handleDefaultMessageEvent(Event event) {
-        System.out.println("event: " + event);
-    }
-
-
-    @EventMapping
-    public void handleTextMessageTestEvent(MessageEvent event) {
-
-        if (event.message() instanceof TextMessageContent) {
-            TextMessageContent message = (TextMessageContent) event.message();
-            String messageText = message.text();
-            String ReMessageText = "ok";
-            // 檢查訊息是否包含 "a"
-            if (messageText.contains("a")) {
-                ReMessageText = "來AAAAAA";
-            } else {
-                ReMessageText= "回應測試";
-            }
-
-            // 創建一個新的文字訊息
-            TextMessage textMessage = new TextMessage( ReMessageText);
-
-            // 創建一個新的回傳訊息請求
-            ReplyMessageRequest replyMessageRequest = new ReplyMessageRequest(
-                    event.replyToken(),
-                    List.of(textMessage),
-                    false);
-
-            messagingApiClient.replyMessage(replyMessageRequest);
-        }
-    }
+//    @EventMapping
+//    public void handleDefaultMessageEvent(Event event) {
+//        System.out.println("event: " + event);
+//    }
+//
+//
+//    @EventMapping
+//    public void handleTextMessageTestEvent(MessageEvent event) {
+//
+//        if (event.message() instanceof TextMessageContent) {
+//            TextMessageContent message = (TextMessageContent) event.message();
+//            String messageText = message.text();
+//            String ReMessageText = "ok";
+//            // 檢查訊息是否包含 "a"
+//            if (messageText.contains("a")) {
+//                ReMessageText = "來AAAAAA";
+//            } else {
+//                ReMessageText= "回應測試";
+//            }
+//
+//            // 創建一個新的文字訊息
+//            TextMessage textMessage = new TextMessage( ReMessageText);
+//
+//            // 創建一個新的回傳訊息請求
+//            ReplyMessageRequest replyMessageRequest = new ReplyMessageRequest(
+//                    event.replyToken(),
+//                    List.of(textMessage),
+//                    false);
+//
+//            messagingApiClient.replyMessage(replyMessageRequest);
+//        }
+//    }
 }
