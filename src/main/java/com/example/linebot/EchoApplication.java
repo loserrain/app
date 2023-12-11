@@ -33,18 +33,18 @@ public class EchoApplication {
         this.messagingApiClient = messagingApiClient;
     }
 
-    @EventMapping
-    public void handleTextMessageEvent(MessageEvent event) {
-        log.info("event: " + event);
-        if (event.message() instanceof TextMessageContent) {
-            TextMessageContent message = (TextMessageContent) event.message();
-            final String originalMessageText = message.text();
-            messagingApiClient.replyMessage(new ReplyMessageRequest(
-                    event.replyToken(),
-                    List.of(new TextMessage(originalMessageText)),
-                    false));
-        }
-    }
+//    @EventMapping
+//    public void handleTextMessageEvent(MessageEvent event) {
+//        log.info("event: " + event);
+//        if (event.message() instanceof TextMessageContent) {
+//            TextMessageContent message = (TextMessageContent) event.message();
+//            final String originalMessageText = message.text();
+//            messagingApiClient.replyMessage(new ReplyMessageRequest(
+//                    event.replyToken(),
+//                    List.of(new TextMessage(originalMessageText)),
+//                    false));
+//        }
+//    }
 
     @EventMapping
     public void handleDefaultMessageEvent(Event event) {
