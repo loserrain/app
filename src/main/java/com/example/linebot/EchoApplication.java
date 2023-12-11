@@ -19,15 +19,15 @@ import com.linecorp.bot.webhook.model.Event;
 import com.linecorp.bot.webhook.model.MessageEvent;
 import com.linecorp.bot.webhook.model.TextMessageContent;
 
-@SpringBootApplication
+//@SpringBootApplication
 @LineMessageHandler
 public class EchoApplication {
     private final Logger log = LoggerFactory.getLogger(EchoApplication.class);
     private final MessagingApiClient messagingApiClient;
 
-    public static void main(String[] args) {
-        SpringApplication.run(EchoApplication.class, args);
-    }
+//    public static void main(String[] args) {
+//        SpringApplication.run(EchoApplication.class, args);
+//    }
 
     public EchoApplication(MessagingApiClient messagingApiClient) {
         this.messagingApiClient = messagingApiClient;

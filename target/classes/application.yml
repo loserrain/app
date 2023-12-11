@@ -3,3 +3,10 @@ line.bot:
   channel-token: KTIpaSE1LfT3bPTWZ/zcGYF5BbFu+R7Gx7+qnpkFCfzRc1UXTeXKUQe1pHPVOtKVIzfzU1zKf4AchVEuLXjGPZimdQjNIpbW2T/eVG+CJUkONRc+TP5N1ViFnahaX6AbL71qdzfG1PSk7Xk0r1uazgdB04t89/1O/w1cDnyilFU=
   channel-secret: 5bd34c37f431d318cd45f331f95252fb
   handler.path: /callback
+
+openai:
+  api:
+    url: http://localhost:3000/v1/chat/completions
+    key: sk-foacCfO1FnMUWVSV3X3hLt3JlUFFmKVM5Jv8PJUuXD2AVP2
+  model: gpt-3.5-turbo
+  temperature: 0
